@@ -5,7 +5,7 @@ import App from './App.vue'
 
 const defaultClient = new ApolloClient({
     uri: 'https://rickandmortyapi.com/graphql',
-    cache: new InMemoryCache
+    cache: new InMemoryCache()
 })
 
 const query = gql`
