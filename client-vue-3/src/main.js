@@ -8,19 +8,19 @@ const defaultClient = new ApolloClient({
     cache: new InMemoryCache()
 })
 
-const query = gql`
-  query {
-    characters{
-      results {
-        name 
-      }
-    }
-  }
-`
+// const query = gql`
+//   query {
+//     characters{
+//       results {
+//         name 
+//       }
+//     }
+//   }
+// `
 
-defaultClient.query({
-    query
-}).then(res => console.log(res))
+// defaultClient.query({
+//     query
+// }).then(res => console.log(res))
 
 createApp({
     setup () {
