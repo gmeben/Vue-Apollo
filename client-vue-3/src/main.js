@@ -1,5 +1,6 @@
-import { createApp } from 'vue'
+import { createApp, provide, h } from 'vue'
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+import { DefaultApolloClient } from '@vue/apollo-composable'
 import App from './App.vue'
 
 const defaultClient = new ApolloClient({
@@ -21,4 +22,11 @@ defaultClient.query({
     query
 }).then(res => console.log(res))
 
-createApp(App).mount('#app')
+createApp({
+    setup () {
+        provide(DefaultApolloClient, defaultClient)
+    },
+    render() {
+        return h(App)
+    }
+}).mount('#app')
