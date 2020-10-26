@@ -1,13 +1,13 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <span>{{ message }}</span>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import { ref } from 'vue'
-import { useQuery } from '@vue/apollo-composable'
+import { useQuery, useResult } from '@vue/apollo-composable'
 import allCharactersQuery from './graphql/allCharacters.query.gql'
 
 export default {
@@ -19,7 +19,8 @@ export default {
   setup() {
     const message = ref(`Hello World 3`)
     const { result } = useQuery(allCharactersQuery)
-    return { message }
+    const characters = useResult(result, null, data => data.allCharacters)
+    return { message, characters }
   }
 }
 </script>
