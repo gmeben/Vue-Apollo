@@ -26,7 +26,7 @@ export default {
   setup() {
     const message = ref(`Hello World 3`)
     const { result } = useQuery(allCharactersQuery)
-    const characters = useResult(result, null, data => data.allCharacters)
+    const characters = useResult(result, null, data => data.characters.results)
     return { message, characters }
   }
 }
