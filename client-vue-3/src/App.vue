@@ -13,12 +13,8 @@ export default {
     HelloWorld
   },
   setup() {
-    
-  },
-  data() {
-    return {
-      message: `A message as reactive data`
-    }
+    const message = ref(`Hello World 2`)
+    return { message }
   }
 }
 </script>
