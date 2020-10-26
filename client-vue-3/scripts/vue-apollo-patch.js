@@ -6,6 +6,10 @@ const loadTrackingPath = path.resolve(
   '../node_modules/@vue/apollo-composable/dist/util/loadingTracking.js'
 )
 
+fs.rmdirSync(path.resolve(__dirname, '../node_modules/.vite_opt_cache'), {
+  recursive: true
+})
+
 fs.writeFileSync(
   loadTrackingPath,
   fs.readFileSync(loadTrackingPath, 'utf8').replace(/\.\$root/m, '.root')
@@ -20,7 +24,7 @@ fs.writeFileSync(
   useQueryPath,
   fs
     .readFileSync(useQueryPath, 'utf8')
-    .replace(/(^.*onServerPrefetch)/m, '$1=()=>{}; $1')
+    .replace(/(^.*onServerPrefetch)(\.\?\.)?/m, '$1?.')
     .replace(/(.* require\("vue"\);)/m, '')
     .replace(/^.*(nextTick)/m, 'vue_demi_1.$1')
 )
