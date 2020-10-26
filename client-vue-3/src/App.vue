@@ -1,11 +1,10 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-  <span>{{ message }}</span>
+  <h1>{{ message }}</h1>
+  <p>This app uses a publically-consumable <a href="https://rickandmortyapi.com/about">Rick and Morty GraphQL API</a> as its GraphQL endpoint.</p>
   <div>
     <ul>
       <li v-for="character in characters" :key="character.id">
-        <b>{{ character.name }}</b>
+        <span>{{ character.name }}</span>
       </li>
     </ul>
   </div>
@@ -24,7 +23,7 @@ export default {
 
   },
   setup() {
-    const message = ref(`Hello World 3`)
+    const message = ref(`Rick and Morty Characters`)
     const { result } = useQuery(allCharactersQuery)
     const characters = useResult(result, null, data => data.characters.results)
     return { message, characters }
