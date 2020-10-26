@@ -1,6 +1,7 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
+  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <span>{{ message }}</span>
 </template>
 
 <script>
@@ -10,6 +11,14 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  setup() {
+    
+  },
+  data() {
+    return {
+      message: "A message as reactive data"
+    }
   }
 }
 </script>
