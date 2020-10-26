@@ -3,6 +3,7 @@ query allCharacters {
         results {
             id
             name 
+            image
         }
     }
 }

@@ -1,13 +1,13 @@
 <template>
   <h1>{{ message }}</h1>
-  <p>This app uses a publically-consumable <a href="https://rickandmortyapi.com/about">Rick and Morty GraphQL API</a> as its GraphQL endpoint.</p>
-  <div>
-    <ul>
-      <li v-for="character in characters" :key="character.id">
-        <span>{{ character.name }}</span>
-      </li>
-    </ul>
-  </div>
+  <p>This Vue 3 app uses a publically-consumable <a href="https://rickandmortyapi.com/graphql">GraphQL API</a> from the <a href="https://rickandmortyapi.com/about">Rick and Morty API</a> as its GraphQL endpoint.</p>
+  <ul class="list--characters">
+    <li v-for="character in characters" :key="character.id">
+      <!-- <img src="{{ character.image }}" alt="Profile image of {{character.name}}" /> -->
+      <span>{{ character.name }}</span><br/>
+      <img v-bind:src="character.image" />
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -39,5 +39,14 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.list--characters {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  padding:0;
+}
+.list--characters li {
+  margin-bottom: 1rem;
 }
 </style>
