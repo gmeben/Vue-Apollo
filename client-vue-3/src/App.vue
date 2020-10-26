@@ -2,6 +2,13 @@
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <span>{{ message }}</span>
+  <div>
+    <ul>
+      <li v-for="character in characters" :key="character.id">
+        <b>{{ character.name }}</b>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
