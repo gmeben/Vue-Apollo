@@ -17,7 +17,7 @@ export default {
   },
   data() {
     return {
-      message: "A message as reactive data"
+      message: `A message as reactive data`
     }
   }
 }
