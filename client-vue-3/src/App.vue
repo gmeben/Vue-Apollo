@@ -20,7 +20,6 @@ export default {
   name: 'App',
   components: {
     HelloWorld
-
   },
   setup() {
     const message = ref(`Rick and Morty Characters`)
