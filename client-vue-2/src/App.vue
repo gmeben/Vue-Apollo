@@ -17,9 +17,6 @@ import gql from 'graphql-tag'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  },
   apollo: {
     characters: gql`query allCharacters {
         characters {

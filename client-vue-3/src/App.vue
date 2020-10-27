@@ -17,9 +17,6 @@ import allCharactersQuery from './graphql/allCharacters.query.gql'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  },
   setup() {
     const message = ref(`Rick and Morty Characters`)
     const { result } = useQuery(allCharactersQuery)
