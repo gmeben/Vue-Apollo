@@ -51,4 +51,7 @@ export default {
   margin-bottom: 1rem;
   font-weight:bold;
 }
+.list--characters img {
+  max-width: 250px;
+}
 </style>
