@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>{{ message }}</h1>
   </div>
 </template>
 
@@ -12,6 +11,10 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  data() {
+    const message = `Rick and Morty Characters`
+    return { message }
   }
 }
 </script>
