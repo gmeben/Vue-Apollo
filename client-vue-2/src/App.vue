@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     <h1>{{ message }}</h1>
+    <ul class="list--characters">
+    </ul>
   </div>
 </template>
 
@@ -14,6 +16,8 @@ export default {
   },
   data() {
     const message = `Rick and Morty Characters`
+    // TODO: use query
+    // TODO: store query results in variable
     return { message }
   }
 }
@@ -27,5 +31,16 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.list--characters {
+  display:flex;
+  flex-wrap:wrap;
+  list-style:none;
+  justify-content:center;
+  padding:0;
+}
+.list--characters li {
+  margin-bottom: 1rem;
+  font-weight:bold;
 }
 </style>
