@@ -1,23 +1,38 @@
 <template>
   <div id="app">
     <h1>{{ message }}</h1>
+    <p>This Vue 2 app uses a publically-consumable <a href="https://rickandmortyapi.com/graphql">GraphQL API</a> from the <a href="https://rickandmortyapi.com/about">Rick and Morty API</a> as its GraphQL endpoint.</p>
     <ul class="list--characters">
+      <li v-for="character in characters.results" :key="character.id">
+        <span>{{ character.name }}</span><br/>
+        <img v-bind:src="character.image" :alt="`Profile image of ${character.name}`"/>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import gql from 'graphql-tag'
 
 export default {
   name: 'App',
   components: {
     HelloWorld
   },
+  apollo: {
+    characters: gql`query allCharacters {
+        characters {
+            results {
+                id
+                name 
+                image
+            }
+        }
+    }`
+  },
   data() {
     const message = `Rick and Morty Characters`
-    // TODO: use query
-    // TODO: store query results in variable
     return { message }
   }
 }
