@@ -1,6 +1,7 @@
 <template>
-  <h1>{{ message }}</h1>
+  <h1>Apollo with Vue 3</h1>
   <p>This Vue 3 app uses a publically-consumable <a href="https://rickandmortyapi.com/graphql">GraphQL API</a> from the <a href="https://rickandmortyapi.com/about">Rick and Morty API</a> as its GraphQL endpoint.</p>
+  <h2>{{ message }}</h2>
   <ul class="list--characters">
     <li v-for="character in characters" :key="character.id">
       <span>{{ character.name }}</span><br/>
