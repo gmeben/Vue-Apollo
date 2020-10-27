@@ -10,6 +10,11 @@ const apolloClient = new ApolloClient({
   uri: 'https://rickandmortyapi.com/graphql'
 })
 
+const apolloProvider = new VueApollo({
+  defaultClient: apolloClient,
+})
+
 new Vue({
+  apolloProvider,
   render: h => h(App),
 }).$mount('#app')
