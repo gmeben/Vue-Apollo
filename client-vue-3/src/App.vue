@@ -43,10 +43,12 @@ export default {
 .list--characters {
   display:flex;
   flex-wrap:wrap;
+  list-style:none;
   justify-content:center;
   padding:0;
 }
 .list--characters li {
   margin-bottom: 1rem;
+  font-weight:bold;
 }
 </style>
