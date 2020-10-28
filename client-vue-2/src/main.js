@@ -1,7 +1,7 @@
-import Vue from 'vue'
 import App from './App.vue'
-import ApolloClient from 'apollo-boost'
+import Vue from 'vue'
 import VueApollo from 'vue-apollo'
+import ApolloClient from 'apollo-boost'
 
 Vue.config.productionTip = false
 Vue.use(VueApollo)
