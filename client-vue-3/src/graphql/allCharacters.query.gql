@@ -1,9 +1,9 @@
-query allCharacters {
-    characters {
-        results {
-            id
-            name
-            image
-        }
+query ($page: Int) {
+  characters(page: $page) {
+    results {
+      id
+      name
+      image
     }
+  }
 }
