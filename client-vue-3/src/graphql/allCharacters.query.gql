@@ -1,8 +1,8 @@
 query allCharacters {
-    characters{
+    characters {
         results {
             id
-            name 
+            name
             image
         }
     }
