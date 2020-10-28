@@ -10,7 +10,7 @@
   <ul class="list--characters">
     <li v-for="character in characters" :key="character.id">
       <span>{{ character.name }}</span><br/>
-      <img :src="character.image" :alt="`Profile image of ${character.name}`"/>
+      <img :src="character.image" :alt="`Profile image of ${character.name}`" :title="`Profile image of ${character.name}`"/>
     </li>
   </ul>
 </template>
