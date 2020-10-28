@@ -23,7 +23,7 @@ export default {
         characters {
             results {
                 id
-                name 
+                name
                 image
             }
         }
