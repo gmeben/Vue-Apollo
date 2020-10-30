@@ -1,11 +1,16 @@
 import { users } from "./db";
 
+/**
+ * @param {Number} max 
+ */
 function getRandomInt(max) {
     return Math.floor(Math.random() * max) + 1
 }
 
-function makeDefaultPassword() {
-    const ints = 8 
+/**
+ * @param {Number} ints 
+ */
+function makeDefaultPassword(ints = 8) {
     let sequence = ``
     for (let x = 1; x <= ints; x++){
       sequence += `${getRandomInt(1000)}`
