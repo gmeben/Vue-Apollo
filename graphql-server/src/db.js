@@ -5,7 +5,7 @@ export let users = [
         primary_email: "john@gmail.com", 
         datetime_created_at: "2020-10-13T20:05:02+0000",
         datetime_locked_at: null,
-        datetime_updated_at: null,
+        datetime_updated_at: "2020-10-30T18:05:59+0000",
         is_email_verified: false,
         is_locked: false,
         local_password: "kLZU5EwF",
