@@ -455,14 +455,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _db__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./db */ "./src/db.js");
 
 /**
- * @param {Number} max 
+ * @param {Number} max
  */
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max) + 1;
 }
 /**
- * @param {Number} ints 
+ * @param {Number} ints
  */
 
 
