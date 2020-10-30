@@ -3,7 +3,6 @@ export let users = [
         id: 1, 
         name: "John Doe", 
         primary_email: "john@gmail.com", 
-        age: 22,
         datetime_created_at: "2020-10-13T20:05:02+0000",
         datetime_locked_at: null,
         datetime_updated_at: null,
@@ -17,7 +16,6 @@ export let users = [
         id: 2, 
         name: "Jane Doe", 
         primary_email: "jane@gmail.com", 
-        age: 23,
         datetime_created_at: "2020-10-13T20:10:05+0000",
         datetime_locked_at: null,
         datetime_updated_at: null,
@@ -30,7 +28,6 @@ export let users = [
         id: 3, 
         name: "Goober", 
         primary_email: "goober@gmail.com", 
-        age: 6,
         local_password: "aaa",
     }
 ];

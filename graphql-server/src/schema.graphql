@@ -1,6 +1,5 @@
 type User {
     id: ID!
-    age: Int
     datetime_created_at: String!
     datetime_locked_at: String
     datetime_updated_at: String
@@ -18,8 +17,8 @@ type Query {
 }
 
 type Mutation {
-    createUser(id: ID!, name: String!, email: String!, age: Int): User!
-    updateUser(id: ID!, name: String, email: String, age: Int): User!
+    createUser(id: ID!, name: String!, email: String!): User!
+    updateUser(id: ID!, name: String, email: String): User!
     updateUserEmail(id: ID!, email: String): User!
     deleteUser(id: ID!): User!
 }
