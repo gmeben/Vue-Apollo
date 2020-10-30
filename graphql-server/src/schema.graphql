@@ -1,0 +1,25 @@
+type User {
+    id: ID!
+    age: Int
+    datetime_created_at: String!
+    datetime_locked_at: String
+    datetime_updated_at: String
+    is_email_verified: Boolean
+    is_locked: Boolean
+    local_password: String!
+    name: String!
+    password_reset_token: String
+    primary_email: String
+}
+
+type Query {
+    users: [User!]!
+    user(id: ID!): User!
+}
+
+type Mutation {
+    createUser(id: ID!, name: String!, email: String!, age: Int): User!
+    updateUser(id: ID!, name: String, email: String, age: Int): User!
+    updateUserEmail(id: ID!, email: String): User!
+    deleteUser(id: ID!): User!
+}
