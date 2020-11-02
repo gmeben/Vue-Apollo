@@ -5,10 +5,10 @@ type User {
   datetime_updated_at: String
   is_email_verified: Boolean
   is_locked: Boolean
-  local_password: String!
-  name: String!
+  password: String!
+  name: String
   password_reset_token: String
-  primary_email: String
+  primary_email: String!
 }
 
 type Query {
@@ -17,8 +17,8 @@ type Query {
 }
 
 type Mutation {
-  createUser(id: ID!, name: String!, email: String!): User!
-  updateUser(id: ID!, name: String, email: String): User!
-  updateUserEmail(id: ID!, email: String): User!
+  createUser(id: ID!, primary_email: String!, password: String): User!
+  updateUser(id: ID!, primary_email: String!, password: String): User!
+  updateUserEmail(id: ID!, primary_email: String!): User!
   deleteUser(id: ID!): User!
 }

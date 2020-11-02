@@ -31,30 +31,23 @@ const resolvers = {
     },
   },
   Mutation: {
-    createUser: (
-      parent,
-      { id, name, email, age, local_password },
-      context,
-      info
-    ) => {
-      if (!local_password) {
-        local_password = makeDefaultPassword();
+    createUser: (parent, { id, email, password }, context, info) => {
+      if (!password) {
+        password = makeDefaultPassword();
       }
       const newUser = {
         id,
         name,
-        primary_email,
-        age,
-        local_password,
+        email,
+        password,
       };
       users.push(newUser);
       return newUser;
     },
-    updateUser: (parent, { id, name, email, age }, context, info) => {
+    updateUser: (parent, { id, email, password }, context, info) => {
       let newUser = users.find((user) => user.id == id);
-      newUser.name = name;
       newUser.primary_email = email;
-      newUser.age = age;
+      newUser.password = password;
       return newUser;
     },
     updateUserEmail: (parent, { id, email }, context, info) => {
@@ -67,8 +60,8 @@ const resolvers = {
       if (userIndex === -1) {
         throw new Error("User not found.");
       }
-      const deletedUsers = users.splice(userIndex, 1);
-      return deletedUsers[0];
+      const deletedUser = users.splice(userIndex, 1);
+      return deletedUser[0];
     },
   },
 };
