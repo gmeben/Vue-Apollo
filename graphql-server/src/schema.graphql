@@ -1,8 +1,8 @@
 type User {
   id: ID!
-  datetime_created_at: String!
-  datetime_locked_at: String
-  datetime_updated_at: String
+  datetime_created: String!
+  datetime_locked: String
+  datetime_updated: String
   is_email_verified: Boolean
   is_locked: Boolean
   name: String

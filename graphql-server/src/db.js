@@ -1,9 +1,9 @@
 export let users = [
   {
     id: 1,
-    datetime_created_at: "2020-10-13T20:05:02+0000",
-    datetime_locked_at: null,
-    datetime_updated_at: "2020-10-30T18:05:59+0000",
+    datetime_created: "2020-10-13T20:05:02+0000",
+    datetime_locked: null,
+    datetime_updated: "2020-10-30T18:05:59+0000",
     is_email_verified: false,
     is_locked: false,
     name: "John Doe",
@@ -14,9 +14,9 @@ export let users = [
   },
   {
     id: 2,
-    datetime_created_at: "2020-10-13T20:10:05+0000",
-    datetime_locked_at: null,
-    datetime_updated_at: null,
+    datetime_created: "2020-10-13T20:10:05+0000",
+    datetime_locked: null,
+    datetime_updated: null,
     is_email_verified: false,
     is_locked: false,
     name: "Jane Doe",
@@ -27,9 +27,9 @@ export let users = [
   },
   {
     id: 3,
-    datetime_created_at: "2020-10-13T20:05:02+0000",
-    datetime_locked_at: null,
-    datetime_updated_at: null,
+    datetime_created: "2020-10-13T20:05:02+0000",
+    datetime_locked: null,
+    datetime_updated: null,
     is_email_verified: false,
     is_locked: false,
     name: "Goober",
