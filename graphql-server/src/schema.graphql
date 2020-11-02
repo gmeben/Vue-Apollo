@@ -5,10 +5,11 @@ type User {
   datetime_updated_at: String
   is_email_verified: Boolean
   is_locked: Boolean
-  password: String!
   name: String
+  password: String!
   password_reset_token: String
   primary_email: String!
+  verify_email_token: String,
 }
 
 type Query {

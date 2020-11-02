@@ -55,6 +55,11 @@ const resolvers = {
       newUser.primary_email = email;
       return newUser;
     },
+    updateUserEmail: (parent, { id, password }, context, info) => {
+      let newUser = users.find((user) => user.id == id);
+      newUser.password = password;
+      return newUser;
+    },
     deleteUser: (parent, { id }, context, info) => {
       const userIndex = users.findIndex((user) => user.id == id);
       if (userIndex === -1) {
