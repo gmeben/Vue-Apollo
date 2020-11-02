@@ -10,7 +10,7 @@ export let users = [
     password: "kLZU5EwF",
     password_reset_token: null,
     primary_email: "john@gmail.com",
-    verify_email_token: null,
+    primary_email_verify_token: null,
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export let users = [
     password: "yhDE3dmj",
     password_reset_token: null,
     primary_email: "jane@gmail.com",
-    verify_email_token: null,
+    primary_email_verify_token: null,
   },
   {
     id: 3,
@@ -36,6 +36,6 @@ export let users = [
     password: "uBf2aZiE",
     password_reset_token: null,
     primary_email: "goober@gmail.com",
-    verify_email_token: null,
+    primary_email_verify_token: null,
   },
 ];

@@ -9,7 +9,7 @@ type User {
   password: String!
   password_reset_token: String
   primary_email: String!
-  verify_email_token: String,
+  primary_email_verify_token: String,
 }
 
 type Query {
