@@ -31,34 +31,33 @@ const resolvers = {
     },
   },
   Mutation: {
-    createUser: (parent, { id, email, password }, context, info) => {
+    createUser: (parent, { id, primary_email, password }, context, info) => {
       if (!password) {
         password = makeDefaultPassword();
       }
       const newUser = {
         id,
-        name,
-        email,
+        primary_email,
         password,
       };
       users.push(newUser);
       return newUser;
     },
     updateUser: (parent, { id, email, password }, context, info) => {
-      let newUser = users.find((user) => user.id == id);
-      newUser.primary_email = email;
-      newUser.password = password;
-      return newUser;
+      let user = users.find((user) => user.id == id);
+      user.primary_email = email;
+      user.password = password;
+      return user;
     },
     updateUserEmail: (parent, { id, email }, context, info) => {
-      let newUser = users.find((user) => user.id == id);
-      newUser.primary_email = email;
-      return newUser;
+      let user = users.find((user) => user.id == id);
+      user.primary_email = email;
+      return user;
     },
-    updateUserEmail: (parent, { id, password }, context, info) => {
-      let newUser = users.find((user) => user.id == id);
-      newUser.password = password;
-      return newUser;
+    updateUserPassword: (parent, { id, password }, context, info) => {
+      let user = users.find((user) => user.id == id);
+      user.password = password;
+      return user;
     },
     deleteUser: (parent, { id }, context, info) => {
       const userIndex = users.findIndex((user) => user.id == id);

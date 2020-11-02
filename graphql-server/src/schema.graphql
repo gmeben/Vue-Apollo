@@ -21,5 +21,6 @@ type Mutation {
   createUser(id: ID!, primary_email: String!, password: String): User!
   updateUser(id: ID!, primary_email: String!, password: String): User!
   updateUserEmail(id: ID!, primary_email: String!): User!
+  updateUserPassword(id: ID!, password: String!): User!
   deleteUser(id: ID!): User!
 }
