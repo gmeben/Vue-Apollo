@@ -20,6 +20,18 @@
               <td class="cell__property">Verified Email</td>
               <td class="cell__value">{{ user.is_email_verified ? 'Yes' : 'No' }}</td>
             </tr>
+            <tr>
+              <td class="cell__property">Created At</td>
+              <td class="cell__value"><code>{{ user.datetime_created }}</code></td>
+            </tr>
+            <tr v-show="user.datetime_updated != null">
+              <td class="cell__property">Updated At</td>
+              <td class="cell__value"><code>{{ user.datetime_updated }}</code></td>
+            </tr>
+            <tr v-show="user.datetime_locked != null">
+              <td class="cell__property">Locked At</td>
+              <td class="cell__value"><code>{{ user.datetime_locked }}</code></td>
+            </tr>
           </tbody>
         </table>
       </li>
@@ -36,6 +48,9 @@ export default {
     users: gql`query getUsers {
       users {
         id
+        datetime_created
+        datetime_updated
+        datetime_locked
         is_email_verified
         is_locked
         name

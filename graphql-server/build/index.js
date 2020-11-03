@@ -406,9 +406,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "users", function() { return users; });
 let users = [{
   id: 1,
-  datetime_created: "2020-10-13T20:05:02+0000",
+  datetime_created: "2020-10-13T20:05:02+00:00",
   datetime_locked: null,
-  datetime_updated: "2020-10-30T18:05:59+0000",
+  datetime_updated: "2020-10-30T18:05:59+00:00",
   is_email_verified: false,
   is_locked: false,
   name: "John Doe",
@@ -418,7 +418,7 @@ let users = [{
   primary_email_verify_token: null
 }, {
   id: 2,
-  datetime_created: "2020-10-13T20:10:05+0000",
+  datetime_created: "2020-10-13T20:10:05+00:00",
   datetime_locked: null,
   datetime_updated: null,
   is_email_verified: false,
@@ -430,7 +430,7 @@ let users = [{
   primary_email_verify_token: null
 }, {
   id: 3,
-  datetime_created: "2020-10-13T20:05:02+0000",
+  datetime_created: "2020-10-13T20:05:02+00:00",
   datetime_locked: null,
   datetime_updated: null,
   is_email_verified: false,
@@ -442,15 +442,27 @@ let users = [{
   primary_email_verify_token: null
 }, {
   id: 4,
-  datetime_created: "2020-11-03T21:12:01+0000",
+  datetime_created: "2020-11-03T21:12:01+00:00",
   datetime_locked: null,
-  datetime_updated: null,
+  datetime_updated: "2020-11-03T21:45:18+00:00",
   is_email_verified: true,
   is_locked: false,
   name: "john jane",
   password: "220-dbA-002-m8l-JnXbz-1",
   password_reset_token: null,
   primary_email: "jjane@gmail.com",
+  primary_email_verify_token: null
+}, {
+  id: 5,
+  datetime_created: "2020-11-03T21:12:01+00:00",
+  datetime_locked: "2020-11-03T21:45:18+00:00",
+  datetime_updated: "2020-11-03T21:45:18+00:00",
+  is_email_verified: true,
+  is_locked: true,
+  name: "Locked Guy",
+  password: "password1234",
+  password_reset_token: null,
+  primary_email: "lockedguy@gmail.com",
   primary_email_verify_token: null
 }];
 
