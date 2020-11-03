@@ -7,7 +7,7 @@ Vue.config.productionTip = false
 Vue.use(VueApollo)
 
 const apolloClient = new ApolloClient({
-  uri: 'https://rickandmortyapi.com/graphql'
+  uri: 'http://localhost:4000/'
 })
 
 const apolloProvider = new VueApollo({
