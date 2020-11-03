@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import gql from 'graphql-tag'
 
 export default {
