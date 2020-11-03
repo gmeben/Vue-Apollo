@@ -4,7 +4,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client'
 import { DefaultApolloClient } from '@vue/apollo-composable'
 
 const defaultClient = new ApolloClient({
-    uri: 'https://rickandmortyapi.com/graphql',
+    uri: 'http://localhost:4000',
     cache: new InMemoryCache()
 })
 

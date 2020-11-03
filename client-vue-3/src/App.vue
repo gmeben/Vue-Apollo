@@ -1,25 +1,51 @@
 <template>
   <h1>Apollo with Vue 3</h1>
-  <p>This Vue 3 app uses a publically-consumable <a href="https://rickandmortyapi.com/graphql">GraphQL API</a> from the <a href="https://rickandmortyapi.com/about">Rick and Morty API</a> as its GraphQL endpoint.</p>
+  <p>This Vue 3 app uses a locally-consumable <a href="http://localhost:4000">GraphQL API</a> as its GraphQL endpoint. Please ensure <a href="http://localhost:4000">this endpoint</a> is running before loading this app.</p>
   <h2>{{ message }}</h2>
   <div>Page {{ currentPage }}</div>
   <div>
     <button @click="handlePage('-')">-</button>
     <button @click="handlePage('+')">+</button>
   </div>
-  <ul class="list--characters">
-    <li v-for="character in characters" :key="character.id">
-      <span>{{ character.name }}</span><br/>
-      <img :src="character.image" :alt="`Profile image of ${character.name}`" :title="`Profile image of ${character.name}`"/>
-    </li>
-  </ul>
+    <ul class="list--users">
+      <li v-for="user in users" :key="user.id">
+        <h3>{{ user.name }}</h3>
+        <table>
+          <tbody>
+            <tr>
+              <td class="cell__property">Email</td>
+              <td class="cell__value">{{ user.primary_email }}</td>
+            </tr>
+            <tr>
+              <td class="cell__property">Locked</td>
+              <td class="cell__value">{{ user.is_locked ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+              <td class="cell__property">Verified Email</td>
+              <td class="cell__value">{{ user.is_email_verified ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+              <td class="cell__property">Created At</td>
+              <td class="cell__value"><code>{{ user.datetime_created }}</code></td>
+            </tr>
+            <tr v-show="user.datetime_updated != null">
+              <td class="cell__property">Updated At</td>
+              <td class="cell__value"><code>{{ user.datetime_updated }}</code></td>
+            </tr>
+            <tr v-show="user.datetime_locked != null">
+              <td class="cell__property">Locked At</td>
+              <td class="cell__value"><code>{{ user.datetime_locked }}</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import { ref } from 'vue'
 import { useQuery, useResult } from '@vue/apollo-composable'
-import allCharactersQuery from './graphql/allCharacters.query.gql'
+import allUsersQuery from './graphql/allUsers.query.gql'
 
 export default {
   name: 'App',
@@ -29,10 +55,10 @@ export default {
     }
   },
   setup() {
-    const message = ref(`Rick and Morty Characters`)
-    const { result } = useQuery(allCharactersQuery)
-    const characters = useResult(result, null, data => data.characters.results)
-    return { message, characters }
+    const message = ref(`App Users`)
+    const { result } = useQuery(allUsersQuery)
+    const users = useResult(result, null, data => data.users)
+    return { message, users }
   },
   methods: {
     handlePage: function(direction) {
@@ -56,18 +82,24 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-.list--characters {
-  display:flex;
-  flex-wrap:wrap;
-  list-style:none;
-  justify-content:center;
-  padding:0;
+.list--users {
+  list-style: none;
+  padding: 0;
 }
-.list--characters li {
+.list--users li {
+  float: left;
   margin-bottom: 1rem;
-  font-weight:bold;
+  padding: 1rem;
 }
-.list--characters img {
+.list--users img {
   max-width: 250px;
+}
+.cell__property {
+  text-align: right;
+  font-weight: bold;
+}
+.cell__value {
+  text-align: left;
+  padding-left: 0.4rem;
 }
 </style>
