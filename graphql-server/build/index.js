@@ -435,10 +435,22 @@ let users = [{
   datetime_updated: null,
   is_email_verified: false,
   is_locked: false,
-  name: "Goober",
+  name: "Jane John",
   password: "uBf2aZiE",
   password_reset_token: null,
-  primary_email: "goober@gmail.com",
+  primary_email: "jjohn@gmail.com",
+  primary_email_verify_token: null
+}, {
+  id: 4,
+  datetime_created: "2020-11-03T21:12:01+0000",
+  datetime_locked: null,
+  datetime_updated: null,
+  is_email_verified: true,
+  is_locked: false,
+  name: "john jane",
+  password: "220-dbA-002-m8l-JnXbz-1",
+  password_reset_token: null,
+  primary_email: "jjane@gmail.com",
   primary_email_verify_token: null
 }];
 
