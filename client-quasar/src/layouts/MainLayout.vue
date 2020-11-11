@@ -28,7 +28,8 @@
       <q-list>
         <q-item-label
           header
-          class="text-grey-8"
+          class="bg-secondary text-grey-1"
+          style="height:50px"
         >
           Menu
         </q-item-label>
