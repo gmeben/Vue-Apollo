@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          {{ title }}
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
@@ -67,6 +67,16 @@ const linksData = [
 export default {
   name: 'MainLayout',
   components: { EssentialLink },
+  computed: {
+    title() {
+      let currentPath = this.$route.fullPath
+      if (currentPath == '/login') {
+        return 'Login'
+      } else {
+        return 'Home'
+      }
+    }
+  },
   data () {
     return {
       leftDrawerOpen: false,
