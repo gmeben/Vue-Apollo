@@ -4,7 +4,7 @@
       <q-list separator>
         <q-item v-for="user in users" :key="user.id" clickable v-ripple>
           <q-item-section avatar>
-            <q-avatar color="primary" text-color="white">
+            <q-avatar :color="user.color" text-color="white">
               {{ user.name.charAt(0) }}
             </q-avatar>
           </q-item-section>
@@ -32,12 +32,14 @@ export default {
       users: [
         {
           id: 1,
+          color: 'orange',
           name: "John Doe",
           email: "john@gmail.com",
           online: true,
         },
         {
           id: 2,
+          color: 'purple',
           name: "Jane Doe",
           email: "jane@gmail.com",
           online: false,
