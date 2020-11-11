@@ -51,6 +51,12 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksData = [
   {
+    title: 'Home',
+    caption: '/home',
+    icon: 'home',
+    link: '/#/home'
+  },
+  {
     title: 'Login',
     caption: '/login',
     icon: 'vpn_key',
