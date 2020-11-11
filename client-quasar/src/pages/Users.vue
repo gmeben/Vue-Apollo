@@ -5,7 +5,7 @@
         <q-item v-for="user in users" :key="user.id" clickable v-ripple>
           <q-item-section avatar>
             <q-avatar color="primary" text-color="white">
-              {{ user.letter }}
+              {{ user.name.charAt(0) }}
             </q-avatar>
           </q-item-section>
 
