@@ -5,7 +5,7 @@ import store from './store'
 Vue.use(Vuex)
 
 export default function () {
-    const Store = new Vuex.store({
+    const Store = new Vuex.Store({
         modules: {
             store
         },
