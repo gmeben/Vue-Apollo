@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -92,6 +93,7 @@ export default {
   },
 
   methods: {
+    ...mapActions('store',['authenticateUser']),
     async signIn() {
       this.state.isLoading = true;
       this.clearErrorMessages();
@@ -110,6 +112,7 @@ export default {
         this.state.isLoading = false;
         return;
       }
+      this.authenticateUser({ email, password })
     },
 
     signOut() {

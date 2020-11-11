@@ -10,7 +10,9 @@ const mutations = {
 }
 // asynchronous methods to retrieve data from the server and trigger mutations
 const actions = {
-
+    authenticateUser({}, payload) {
+        console.log(`authenticate user`, payload)
+    }
 }
 // retrieve data from the state
 const getters = {
