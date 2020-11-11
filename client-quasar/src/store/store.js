@@ -20,6 +20,20 @@ const actions = {
                 console.log(error)
             })
     },
+    handleAuthStateChanged() {
+        firebaseAuth.onAuthStateChanged(user => {
+            if (user) {
+                // logged in
+                let userId = firebaseAuth.currentUser.uid
+                firebaseDb.ref('users/' + userId).once('value', snapshot => {
+                    console.log('snapshot:', snapshot)
+                    let userDetails = snapshot.val()
+                    console.log('userDetails:', userDetails)
+                })
+            } else {
+                // logged out
+            }
+        })
     }
 }
 // retrieve data from the state
