@@ -12,6 +12,14 @@ const mutations = {
 const actions = {
     authenticateUser({}, payload) {
         console.log(`authenticate user`, payload)
+        firebaseAuth.signInWithEmailAndPassword(payload.email, payload.password)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    },
     }
 }
 // retrieve data from the state
