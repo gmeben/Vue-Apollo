@@ -113,6 +113,9 @@ export default {
         return;
       }
       this.authenticateUser({ email, password })
+        .finally(() => {
+          this.state.isLoading = false
+        })
     },
 
     signOut() {
