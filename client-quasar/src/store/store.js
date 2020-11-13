@@ -2,11 +2,15 @@ import { firebaseAuth, firebaseDb } from 'boot/firebase'
 
 // application state
 const state = {
+    userDetails: {
 
+    }
 }
 // synchronous methods to manipulate data in the state
 const mutations = {
-
+    setUserDetails(state, payload) {
+        state.userDetails = payload
+    }
 }
 // asynchronous methods to retrieve data from the server and trigger mutations
 const actions = {
@@ -20,7 +24,7 @@ const actions = {
                 console.log(error)
             })
     },
-    handleAuthStateChanged() {
+    handleAuthStateChanged({ commit }) {
         firebaseAuth.onAuthStateChanged(user => {
             if (user) {
                 // logged in
@@ -29,6 +33,11 @@ const actions = {
                     console.log('snapshot:', snapshot)
                     let userDetails = snapshot.val()
                     console.log('userDetails:', userDetails)
+                    commit('setUserDetails', {
+                        name: userDetails.name,
+                        email: userDetails.email,
+                        userId: userId
+                    })
                 })
             } else {
                 // logged out
