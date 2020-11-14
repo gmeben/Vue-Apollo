@@ -15,7 +15,16 @@
           {{ title }}
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <q-btn
+          to="/login"
+          class="absolute-right q-px-sm"
+          icon="account_circle"
+          no-caps
+          flat
+          dense
+          label="Login"
+          />
+
       </q-toolbar>
     </q-header>
 
