@@ -1,19 +1,23 @@
+import Vue from 'vue'
 import { firebaseAuth, firebaseDb } from 'boot/firebase'
 
 // application state
 const state = {
-    userDetails: {}
+    userDetails: {},
+    users: {}
 }
 // synchronous methods to manipulate data in the state
 const mutations = {
     setUserDetails(state, payload) {
         state.userDetails = payload
+    },
+    addUser(state, payload) {
+        Vue.set(state.users, payload.userId, payload.userDetails)
     }
 }
 // asynchronous methods to retrieve data from the server and trigger mutations
 const actions = {
     authenticateUser({}, payload) {
-        console.log(`authenticate user`, payload)
         firebaseAuth.signInWithEmailAndPassword(payload.email, payload.password)
             .then(response => {
                 console.log(response)
@@ -44,6 +48,7 @@ const actions = {
                         online: true
                     }
                 })
+                dispatch('firebaseGetUsers')
                 this.$router.push('/home')
             } else {
                 // logged out
@@ -59,12 +64,32 @@ const actions = {
         })
     }, 
     firebaseUpdateUser({}, payload) {
-        firebaseDb.ref('users/' + payload.userId).update(payload.updates)
+        if (payload.userId) {
+            firebaseDb.ref('users/' + payload.userId).update(payload.updates)
+        }
+    },
+    firebaseGetUsers({ commit }) {
+        firebaseDb.ref('users').on('child_added', snapshot => {
+            let userDetails = snapshot.val()
+            let userId = snapshot.key
+            commit('addUser', {
+                userId,
+                userDetails
+            })
+        })
     }
 }
 // retrieve data from the state
 const getters = {
-
+    users: state => {
+        let usersFiltered = {}
+        Object.keys(state.users).forEach(key => {
+            if (key !== state.userDetails.userId ) {
+                usersFiltered[key] = state.users[key]
+            }
+        })
+        return usersFiltered
+    }
 }
 export default {
     namespaced: true,

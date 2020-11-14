@@ -26,27 +26,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  data() {
-    return {
-      users: [
-        {
-          id: 1,
-          color: 'orange',
-          name: "John Doe",
-          email: "john@gmail.com",
-          online: true,
-        },
-        {
-          id: 2,
-          color: 'purple',
-          name: "Jane Doe",
-          email: "jane@gmail.com",
-          online: false,
-        },
-      ],
-    };
-  },
+  computed: {
+    ...mapGetters('store',['users'])
+  }
 };
 </script>
 
