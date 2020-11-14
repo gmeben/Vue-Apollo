@@ -38,9 +38,11 @@ const actions = {
                         userId: userId
                     })
                 })
+                this.$router.push('/home')
             } else {
                 // logged out
                 commit('setUserDetails', {})
+                this.$router.replace('/login')
             }
         })
     }
