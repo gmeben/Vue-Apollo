@@ -28,6 +28,7 @@
 
         <q-btn
           v-else
+          @click="signOutUser"
           class="absolute-right q-px-sm"
           icon="account_circle"
           no-caps
@@ -68,7 +69,7 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink.vue'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 const linksData = [
   {
@@ -104,6 +105,9 @@ export default {
       leftDrawerOpen: false,
       essentialLinks: linksData
     }
+  },
+  methods: {
+    ...mapActions('store', ['signOutUser'])
   }
 }
 </script>
