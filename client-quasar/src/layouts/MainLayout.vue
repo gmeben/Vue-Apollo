@@ -16,6 +16,7 @@
         </q-toolbar-title>
 
         <q-btn
+          v-if="!userDetails.userId"
           to="/login"
           class="absolute-right q-px-sm"
           icon="account_circle"
@@ -23,6 +24,16 @@
           flat
           dense
           label="Login"
+          />
+
+        <q-btn
+          v-else
+          class="absolute-right q-px-sm"
+          icon="account_circle"
+          no-caps
+          flat
+          dense
+          label="Logout"
           />
 
       </q-toolbar>
@@ -57,6 +68,7 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink.vue'
+import { mapState } from 'vuex'
 
 const linksData = [
   {
@@ -77,6 +89,7 @@ export default {
   name: 'MainLayout',
   components: { EssentialLink },
   computed: {
+    ...mapState('store', ['userDetails']),
     title() {
       let currentPath = this.$route.fullPath
       if (currentPath == '/login') {

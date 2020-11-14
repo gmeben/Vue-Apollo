@@ -2,9 +2,7 @@ import { firebaseAuth, firebaseDb } from 'boot/firebase'
 
 // application state
 const state = {
-    userDetails: {
-
-    }
+    userDetails: {}
 }
 // synchronous methods to manipulate data in the state
 const mutations = {
@@ -39,7 +37,7 @@ const actions = {
                 })
             } else {
                 // logged out
-                commit('setUserDetails',{})
+                commit('setUserDetails', {})
             }
         })
     }
