@@ -1,63 +1,77 @@
 <template>
   <q-page class="bg-grey-3">
-    <div class="full-width absolute-center">
+    <div class="full-width q-pa-lg">
       <div class="row justify-center">
-        <q-card
-          class="q-pa-md col-xs-11 col-sm-5 col-md-4 col-lg-4 col-xl-3"
-          style="max-width: 400px"
-        >
-          <q-card-section v-if="state.isSignIn === false" class="q-gutter-y-md">
-            <q-input
-              ref="inputEmail"
-              v-model="input.email.value"
-              label="Email Address"
-              input-style="font-size: 16px"
-              :disable="state.isLoading"
-              :error="input.email.error.status"
-              :error-message="input.email.error.message"
-              @keydown.enter.prevent="$refs.inputPassword.focus"
-              outlined
-              autofocus
-            />
-            <q-input
-              ref="inputPassword"
-              v-model="input.password.value"
-              label="Password"
-              type="password"
-              input-style="font-size: 16px"
-              :disable="state.isLoading"
-              :error="input.password.error.status"
-              :error-message="input.password.error.message"
-              @keydown.enter.prevent="signIn"
-              outlined
-            />
-            <center>
-              <q-btn
-                class="full-width"
-                label="Sign In"
-                type="submit"
-                color="primary"
-                :ripple="true"
-                :loading="state.isLoading"
-                @click="signIn"
-              >
-                <template v-slot:loading>
-                  <q-spinner class="q-mr-sm" />
-                  <div class="q-mr-lg">Sign In</div>
-                </template>
-              </q-btn>
-            </center>
-          </q-card-section>
-          <q-card-section v-else>
-            <q-btn
-              class="full-width"
-              label="Sign Out"
-              type="submit"
-              color="primary"
-              :ripple="true"
-              @click="signOut"
-            />
-          </q-card-section>
+        <q-card>
+          <q-tabs
+            v-model="tab"
+            dense
+            class="text-grey"
+            active-color="primary"
+            indicator-color="primary"
+            align="justify"
+            narrow-indicator
+          >
+            <q-tab name="login" label="Login" />
+            <q-tab name="register" label="Register" />
+          </q-tabs>
+
+          <q-separator />
+
+          <q-tab-panels v-model="tab" animated>
+            <q-tab-panel name="login">
+
+              <login-register />
+
+              <q-card-section class="q-gutter-y-md">
+                <q-input
+                  ref="inputEmail"
+                  v-model="input.email.value"
+                  label="Email Address"
+                  input-style="font-size: 16px"
+                  :disable="state.isLoading"
+                  :error="input.email.error.status"
+                  :error-message="input.email.error.message"
+                  @keydown.enter.prevent="$refs.inputPassword.focus"
+                  outlined
+                  autofocus
+                />
+                <q-input
+                  ref="inputPassword"
+                  v-model="input.password.value"
+                  label="Password"
+                  type="password"
+                  input-style="font-size: 16px"
+                  :disable="state.isLoading"
+                  :error="input.password.error.status"
+                  :error-message="input.password.error.message"
+                  @keydown.enter.prevent="signIn"
+                  outlined
+                />
+                <center>
+                  <q-btn
+                    class="full-width"
+                    label="Sign In"
+                    type="submit"
+                    color="primary"
+                    :ripple="true"
+                    :loading="state.isLoading"
+                    @click="signIn"
+                  >
+                    <template v-slot:loading>
+                      <q-spinner class="q-mr-sm" />
+                      <div class="q-mr-lg">Sign In</div>
+                    </template>
+                  </q-btn>
+                </center>
+              </q-card-section>
+            </q-tab-panel>
+
+            <q-tab-panel name="register">
+
+              <login-register />
+            </q-tab-panel>
+          </q-tab-panels>
         </q-card>
       </div>
     </div>
@@ -65,10 +79,12 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
+import LoginRegister from '../components/LoginRegister.vue';
 export default {
   data() {
     return {
+      tab: "login",
       input: {
         email: {
           value: "",
@@ -88,12 +104,16 @@ export default {
       state: {
         isLoading: false,
         isSignIn: false,
-      },
-    };
+      }
+    }
+  },
+
+  components: {
+    LoginRegister
   },
 
   methods: {
-    ...mapActions('store',['authenticateUser']),
+    ...mapActions("store", ["authenticateUser"]),
     async signIn() {
       this.state.isLoading = true;
       this.clearErrorMessages();
@@ -112,10 +132,9 @@ export default {
         this.state.isLoading = false;
         return;
       }
-      this.authenticateUser({ email, password })
-        .finally(() => {
-          this.state.isLoading = false
-        })
+      this.authenticateUser({ email, password }).finally(() => {
+        this.state.isLoading = false;
+      });
     },
 
     signOut() {
