@@ -4,7 +4,7 @@
       v-if="tab == 'register'"
       v-model="formData.name"
       type="text"
-      label="Name"
+      label="Name (optional)"
       input-style="font-size: 16px"
       :disable="state.isLoading"
       class="q-mb-md"
@@ -29,7 +29,7 @@
       outlined
     />
     <q-btn
-      class="full-width"
+      class="full-width q-mt-lg"
       :label="tab"
       type="submit"
       color="primary"

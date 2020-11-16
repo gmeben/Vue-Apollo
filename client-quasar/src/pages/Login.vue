@@ -18,7 +18,7 @@
 
           <q-separator />
 
-          <q-tab-panels v-model="tab" animated>
+          <q-tab-panels v-model="tab" animated class="q-pa-lg">
             <q-tab-panel name="login">
               <login-register :tab="tab" />
             </q-tab-panel>
