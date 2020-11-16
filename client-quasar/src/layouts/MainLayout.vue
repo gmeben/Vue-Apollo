@@ -98,12 +98,14 @@ export default {
       } else {
         return 'Home'
       }
-    }
+    },
+    essentialLinks() {
+      return linksData.filter((link) => !(this.userDetails.userId && link.caption === '/login'))
+    } 
   },
   data () {
     return {
-      leftDrawerOpen: false,
-      essentialLinks: linksData
+      leftDrawerOpen: false
     }
   },
   methods: {
