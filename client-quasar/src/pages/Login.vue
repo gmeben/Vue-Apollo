@@ -21,7 +21,7 @@
           <q-tab-panels v-model="tab" animated>
             <q-tab-panel name="login">
 
-              <login-register />
+              <login-register :tab="tab" />
 
               <q-card-section class="q-gutter-y-md">
                 <q-input
@@ -34,7 +34,6 @@
                   :error-message="input.email.error.message"
                   @keydown.enter.prevent="$refs.inputPassword.focus"
                   outlined
-                  autofocus
                 />
                 <q-input
                   ref="inputPassword"
@@ -69,7 +68,8 @@
 
             <q-tab-panel name="register">
 
-              <login-register />
+              <login-register :tab="tab" />
+
             </q-tab-panel>
           </q-tab-panels>
         </q-card>
