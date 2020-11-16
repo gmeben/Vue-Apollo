@@ -24,7 +24,18 @@ const actions = {
     firebaseAuth
       .createUserWithEmailAndPassword(payload.email, payload.password)
       .then(response => {
+          const getRandomColor = function() {
+              let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
+              return colors[Math.floor(Math.random() * colors.length)]
+          }
         console.log(response);
+        let userId = firebaseAuth.currentUser.uid
+        firebaseDb.ref('users/' + userId).set({
+            name: payload.name,
+            email: payload.email,
+            color: getRandomColor(),
+            online: true
+        })
       })
       .catch(error => {
         console.log(error);

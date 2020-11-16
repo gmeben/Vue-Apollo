@@ -54,7 +54,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions("store", ["authenticateUser"]),
+    ...mapActions("store", ["authenticateUser","registerUser"]),
     submitForm() {
       this.state.isLoading = true;
 
