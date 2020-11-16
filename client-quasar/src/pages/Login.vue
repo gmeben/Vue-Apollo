@@ -42,10 +42,8 @@ export default {
       tab: "login"
     };
   },
-
   components: {
     LoginRegister,
-  },
-  created() {},
+  }
 };
 </script>
