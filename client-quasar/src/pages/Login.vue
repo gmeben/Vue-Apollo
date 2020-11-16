@@ -39,27 +39,7 @@ import LoginRegister from "../components/LoginRegister.vue";
 export default {
   data() {
     return {
-      tab: "login",
-      input: {
-        email: {
-          value: "",
-          error: {
-            status: false,
-            message: "",
-          },
-        },
-        password: {
-          value: "",
-          error: {
-            status: false,
-            message: "",
-          },
-        },
-      },
-      state: {
-        isLoading: false,
-        isSignIn: false,
-      },
+      tab: "login"
     };
   },
 
