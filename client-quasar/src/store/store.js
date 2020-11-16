@@ -74,7 +74,9 @@ const actions = {
           }
         });
         dispatch("firebaseGetUsers");
-        this.$router.push("/home");
+        if (window.location.hash !== '#/home') {
+          this.$router.push("/home");
+        }
       } else {
         // logged out
         dispatch("firebaseUpdateUser", {
@@ -84,7 +86,9 @@ const actions = {
           }
         });
         commit("setUserDetails", {});
-        this.$router.replace("/login");
+        if (window.location.hash !== '#/login') {
+          this.$router.replace("/login");
+        }
       }
     });
   },
