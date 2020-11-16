@@ -5,6 +5,8 @@
       v-model="formData.name"
       type="text"
       label="Name"
+      input-style="font-size: 16px"
+      :disable="state.isLoading"
       class="q-mb-md"
       outlined
     />
@@ -12,6 +14,8 @@
       v-model="formData.email"
       type="email"
       label="Email Address"
+      input-style="font-size: 16px"
+      :disable="state.isLoading"
       class="q-mb-md"
       outlined
     />
@@ -19,15 +23,22 @@
       v-model="formData.password"
       type="password"
       label="Password"
+      input-style="font-size: 16px"
+      :disable="state.isLoading"
       class="q-mb-md"
       outlined
     />
-    <q-btn class="full-width" :label="tab" type="submit" color="primary">
-    </q-btn>
+    <q-btn
+      class="full-width"
+      :label="tab"
+      type="submit"
+      color="primary"
+    ></q-btn>
   </q-form>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   props: ["tab"],
   data() {
@@ -37,12 +48,23 @@ export default {
         email: "",
         password: "",
       },
+      state: {
+        isLoading: false,
+      },
     };
   },
   methods: {
+    ...mapActions("store", ["authenticateUser"]),
     submitForm() {
+      this.state.isLoading = true;
+
+      let email = this.formData.email;
+      let password = this.formData.password;
+
       if (this.tab === "login") {
-        console.log("login");
+        this.authenticateUser({ email, password }).finally(() => {
+          this.state.isLoading = false;
+        });
       } else {
         console.log("register");
       }
