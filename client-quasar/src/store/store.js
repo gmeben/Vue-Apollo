@@ -20,6 +20,15 @@ const mutations = {
 }
 // asynchronous methods to retrieve data from the server and trigger mutations
 const actions = {
+    registerUser({}, payload) {
+        firebaseAuth.createUserWithEmailAndPassword(payload.email, payload.password)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    },
     authenticateUser({}, payload) {
         firebaseAuth.signInWithEmailAndPassword(payload.email, payload.password)
             .then(response => {

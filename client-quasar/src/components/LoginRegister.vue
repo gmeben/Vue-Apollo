@@ -58,6 +58,7 @@ export default {
     submitForm() {
       this.state.isLoading = true;
 
+      let name = this.formData.name;
       let email = this.formData.email;
       let password = this.formData.password;
 
@@ -66,7 +67,9 @@ export default {
           this.state.isLoading = false;
         });
       } else {
-        console.log("register");
+        this.registerUser({ name, email, password }).finally(() => {
+          this.state.isLoading = false;
+        });
       }
     },
   },
