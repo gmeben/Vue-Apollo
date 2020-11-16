@@ -6,7 +6,7 @@
       type="text"
       label="Name (optional)"
       input-style="font-size: 16px"
-      :disable="state.isLoading"
+      :disable="isLoading"
       class="q-mb-md"
       outlined
     />
@@ -15,7 +15,7 @@
       type="email"
       label="Email Address"
       input-style="font-size: 16px"
-      :disable="state.isLoading"
+      :disable="isLoading"
       class="q-mb-md"
       outlined
     />
@@ -24,7 +24,7 @@
       type="password"
       label="Password"
       input-style="font-size: 16px"
-      :disable="state.isLoading"
+      :disable="isLoading"
       class="q-mb-md"
       outlined
     />
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 export default {
   props: ["tab"],
   data() {
@@ -48,15 +48,14 @@ export default {
         email: "",
         password: "",
       },
-      state: {
-        isLoading: false,
       },
     };
   },
   methods: {
     ...mapActions("store", ["authenticateUser","registerUser"]),
+    ...mapMutations("store", ["setIsLoading"]),
     submitForm() {
-      this.state.isLoading = true;
+      this.setIsLoading(true);
 
       let name = this.formData.name;
       let email = this.formData.email;
@@ -73,5 +72,8 @@ export default {
       }
     },
   },
+  computed: {
+    ...mapGetters('store', ['isLoading'])
+  }
 };
 </script>

@@ -3,11 +3,15 @@ import { firebaseAuth, firebaseDb } from "boot/firebase";
 
 // application state
 const state = {
+  isLoading: false,
   userDetails: {},
   users: {}
 };
 // synchronous methods to manipulate data in the state
 const mutations = {
+  setIsLoading(state, payload) {
+    state.isLoading = payload
+  },
   setUserDetails(state, payload) {
     state.userDetails = payload;
   },
@@ -41,15 +45,17 @@ const actions = {
         console.log(error);
       });
   },
-  authenticateUser({}, payload) {
+  authenticateUser({ commit }, payload) {
     firebaseAuth
       .signInWithEmailAndPassword(payload.email, payload.password)
       .then(response => {
-        console.log(response);
+        console.log('then',response);
       })
       .catch(error => {
-        console.log(error);
-      });
+        console.log('error',error);
+      }).finally(() => {
+        commit("setIsLoading", false)
+      })
   },
   signOutUser() {
     firebaseAuth.signOut();
@@ -126,7 +132,8 @@ const getters = {
       }
     });
     return usersFiltered;
-  }
+  },
+  isLoading: state => state.isLoading
 };
 export default {
   namespaced: true,
