@@ -37,7 +37,7 @@ const mutations = {
 };
 // asynchronous methods to retrieve data from the server and trigger mutations
 const actions = {
-  registerUser({}, payload) {
+  registerUser({ commit, dispatch }, payload) {
     firebaseAuth
       .createUserWithEmailAndPassword(payload.email, payload.password)
       .then(response => {
@@ -59,9 +59,10 @@ const actions = {
       })
       .finally(() => {
         commit("setIsLoading", false)
+        dispatch("clearLoginForm")
       })
   },
-  authenticateUser({ commit }, payload) {
+  authenticateUser({ commit, dispatch }, payload) {
     firebaseAuth
       .signInWithEmailAndPassword(payload.email, payload.password)
       .then(response => {
@@ -72,6 +73,7 @@ const actions = {
       })
       .finally(() => {
         commit("setIsLoading", false)
+        dispatch("clearLoginForm")
       })
   },
   signOutUser() {
@@ -137,6 +139,11 @@ const actions = {
         userDetails
       });
     });
+  },
+  clearLoginForm({ commit }) {
+    commit("setLoginName","")
+    commit("setLoginEmail","")
+    commit("setLoginPassword","")
   }
 };
 // retrieve data from the state
