@@ -31,12 +31,13 @@
       class="q-mb-md"
       outlined
     />
-    <q-banner 
+    <q-banner
       v-if="loginErrorStatus"
-      inline-actions 
+      inline-actions
       class="text-white bg-negative rounded-borders"
-      dense>
-      <q-icon name="warning" /> {{ loginErrorMessage}}
+      dense
+    >
+      <q-icon name="warning" /> {{ loginErrorMessage }}
     </q-banner>
     <q-btn
       class="full-width q-mt-lg"
