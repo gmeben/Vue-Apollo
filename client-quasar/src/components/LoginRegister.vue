@@ -46,7 +46,12 @@ export default {
   props: ["tab"],
   methods: {
     ...mapActions("store", ["authenticateUser", "registerUser"]),
-    ...mapMutations("store", ["setIsLoading", "setLoginName", "setLoginEmail", "setLoginPassword"]),
+    ...mapMutations("store", [
+      "setIsLoading",
+      "setLoginName",
+      "setLoginEmail",
+      "setLoginPassword",
+    ]),
     submitForm() {
       this.setIsLoading(true);
 
@@ -62,7 +67,12 @@ export default {
     },
   },
   computed: {
-    ...mapGetters("store", ["isLoading", "loginName", "loginEmail", "loginPassword"]),
+    ...mapGetters("store", [
+      "isLoading",
+      "loginName",
+      "loginEmail",
+      "loginPassword",
+    ]),
   },
 };
 </script>

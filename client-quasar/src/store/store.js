@@ -14,16 +14,16 @@ const state = {
 // synchronous methods to manipulate data in the state
 const mutations = {
   setLoginName(state, payload) {
-    state.loginName = payload
+    state.loginName = payload;
   },
   setLoginEmail(state, payload) {
-    state.loginEmail = payload
+    state.loginEmail = payload;
   },
   setLoginPassword(state, payload) {
-    state.loginPassword = payload
+    state.loginPassword = payload;
   },
   setIsLoading(state, payload) {
-    state.isLoading = payload
+    state.isLoading = payload;
   },
   setUserDetails(state, payload) {
     state.userDetails = payload;
@@ -41,26 +41,26 @@ const actions = {
     firebaseAuth
       .createUserWithEmailAndPassword(payload.email, payload.password)
       .then(response => {
-          const getRandomColor = function() {
-              let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
-              return colors[Math.floor(Math.random() * colors.length)]
-          }
+        const getRandomColor = function() {
+          let colors = ["red", "orange", "yellow", "green", "blue", "purple"];
+          return colors[Math.floor(Math.random() * colors.length)];
+        };
         console.log(response);
-        let userId = firebaseAuth.currentUser.uid
-        firebaseDb.ref('users/' + userId).set({
-            name: payload.name,
-            email: payload.email,
-            color: getRandomColor(),
-            online: true
-        })
+        let userId = firebaseAuth.currentUser.uid;
+        firebaseDb.ref("users/" + userId).set({
+          name: payload.name,
+          email: payload.email,
+          color: getRandomColor(),
+          online: true
+        });
       })
       .catch(error => {
         console.log(error);
       })
       .finally(() => {
-        commit("setIsLoading", false)
-        dispatch("clearLoginForm")
-      })
+        commit("setIsLoading", false);
+        dispatch("clearLoginForm");
+      });
   },
   authenticateUser({ commit, dispatch }, payload) {
     firebaseAuth
@@ -72,9 +72,9 @@ const actions = {
         // console.log('error',error);
       })
       .finally(() => {
-        commit("setIsLoading", false)
-        dispatch("clearLoginForm")
-      })
+        commit("setIsLoading", false);
+        dispatch("clearLoginForm");
+      });
   },
   signOutUser() {
     firebaseAuth.signOut();
@@ -99,7 +99,7 @@ const actions = {
           }
         });
         dispatch("firebaseGetUsers");
-        if (window.location.hash !== '#/home') {
+        if (window.location.hash !== "#/home") {
           this.$router.push("/home");
         }
       } else {
@@ -111,7 +111,7 @@ const actions = {
           }
         });
         commit("setUserDetails", {});
-        if (window.location.hash !== '#/login') {
+        if (window.location.hash !== "#/login") {
           this.$router.replace("/login");
         }
       }
@@ -141,9 +141,9 @@ const actions = {
     });
   },
   clearLoginForm({ commit }) {
-    commit("setLoginName","")
-    commit("setLoginEmail","")
-    commit("setLoginPassword","")
+    commit("setLoginName", "");
+    commit("setLoginEmail", "");
+    commit("setLoginPassword", "");
   }
 };
 // retrieve data from the state
@@ -157,17 +157,17 @@ const getters = {
     });
     return usersFiltered;
   },
-  isLoading: (state) => {
-    return state.isLoading
+  isLoading: state => {
+    return state.isLoading;
   },
-  loginName: (state) => {
-    return state.loginName
+  loginName: state => {
+    return state.loginName;
   },
-  loginEmail: (state) => {
-    return state.loginEmail
+  loginEmail: state => {
+    return state.loginEmail;
   },
-  loginPassword: (state) => {
-    return state.loginPassword
+  loginPassword: state => {
+    return state.loginPassword;
   }
 };
 export default {
