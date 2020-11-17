@@ -5,10 +5,23 @@ import { firebaseAuth, firebaseDb } from "boot/firebase";
 const state = {
   isLoading: false,
   userDetails: {},
-  users: {}
+  users: {},
+  loginName: "",
+  loginEmail: "",
+  loginPassword: "",
+  loginError: ""
 };
 // synchronous methods to manipulate data in the state
 const mutations = {
+  setLoginName(state, payload) {
+    state.loginName = payload
+  },
+  setLoginEmail(state, payload) {
+    state.loginEmail = payload
+  },
+  setLoginPassword(state, payload) {
+    state.loginPassword = payload
+  },
   setIsLoading(state, payload) {
     state.isLoading = payload
   },
@@ -43,17 +56,21 @@ const actions = {
       })
       .catch(error => {
         console.log(error);
-      });
+      })
+      .finally(() => {
+        commit("setIsLoading", false)
+      })
   },
   authenticateUser({ commit }, payload) {
     firebaseAuth
       .signInWithEmailAndPassword(payload.email, payload.password)
       .then(response => {
-        console.log('then',response);
+        // console.log('then',response);
       })
       .catch(error => {
-        console.log('error',error);
-      }).finally(() => {
+        // console.log('error',error);
+      })
+      .finally(() => {
         commit("setIsLoading", false)
       })
   },
@@ -133,7 +150,18 @@ const getters = {
     });
     return usersFiltered;
   },
-  isLoading: state => state.isLoading
+  isLoading: (state) => {
+    return state.isLoading
+  },
+  loginName: (state) => {
+    return state.loginName
+  },
+  loginEmail: (state) => {
+    return state.loginEmail
+  },
+  loginPassword: (state) => {
+    return state.loginPassword
+  }
 };
 export default {
   namespaced: true,

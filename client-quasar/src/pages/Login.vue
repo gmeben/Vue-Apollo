@@ -43,7 +43,7 @@ export default {
     };
   },
   components: {
-    LoginRegister,
+    LoginRegister
   }
 };
 </script>

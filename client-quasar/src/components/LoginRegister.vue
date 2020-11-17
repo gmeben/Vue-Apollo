@@ -2,7 +2,8 @@
   <q-form @submit="submitForm">
     <q-input
       v-if="tab == 'register'"
-      v-model="formData.name"
+      :value="loginName"
+      @input="setLoginName"
       type="text"
       label="Name (optional)"
       input-style="font-size: 16px"
@@ -11,7 +12,8 @@
       outlined
     />
     <q-input
-      v-model="formData.email"
+      :value="loginEmail"
+      @input="setLoginEmail"
       type="email"
       label="Email Address"
       input-style="font-size: 16px"
@@ -20,7 +22,8 @@
       outlined
     />
     <q-input
-      v-model="formData.password"
+      :value="loginPassword"
+      @input="setLoginPassword"
       type="password"
       label="Password"
       input-style="font-size: 16px"
@@ -38,42 +41,28 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapMutations } from "vuex";
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 export default {
   props: ["tab"],
-  data() {
-    return {
-      formData: {
-        name: "",
-        email: "",
-        password: "",
-      },
-      },
-    };
-  },
   methods: {
-    ...mapActions("store", ["authenticateUser","registerUser"]),
-    ...mapMutations("store", ["setIsLoading"]),
+    ...mapActions("store", ["authenticateUser", "registerUser"]),
+    ...mapMutations("store", ["setIsLoading", "setLoginName", "setLoginEmail", "setLoginPassword"]),
     submitForm() {
       this.setIsLoading(true);
 
-      let name = this.formData.name;
-      let email = this.formData.email;
-      let password = this.formData.password;
+      let name = this.loginName;
+      let email = this.loginEmail;
+      let password = this.loginPassword;
 
       if (this.tab === "login") {
-        this.authenticateUser({ email, password }).finally(() => {
-          this.state.isLoading = false;
-        });
+        this.authenticateUser({ email, password });
       } else {
-        this.registerUser({ name, email, password }).finally(() => {
-          this.state.isLoading = false;
-        });
+        this.registerUser({ name, email, password });
       }
     },
   },
   computed: {
-    ...mapGetters('store', ['isLoading'])
-  }
+    ...mapGetters("store", ["isLoading", "loginName", "loginEmail", "loginPassword"]),
+  },
 };
 </script>
