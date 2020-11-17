@@ -9,7 +9,8 @@ const state = {
   loginName: "",
   loginEmail: "",
   loginPassword: "",
-  loginError: ""
+  loginErrorStatus: false,
+  loginErrorMessage: ""
 };
 // synchronous methods to manipulate data in the state
 const mutations = {
@@ -21,6 +22,10 @@ const mutations = {
   },
   setLoginPassword(state, payload) {
     state.loginPassword = payload;
+  },
+  setLoginError(state, payload) {
+    state.loginErrorStatus = payload.status
+    state.loginErrorMessage = payload.message;
   },
   setIsLoading(state, payload) {
     state.isLoading = payload;
@@ -38,6 +43,7 @@ const mutations = {
 // asynchronous methods to retrieve data from the server and trigger mutations
 const actions = {
   registerUser({ commit, dispatch }, payload) {
+    commit("setLoginError", {status: false, message: ""})
     firebaseAuth
       .createUserWithEmailAndPassword(payload.email, payload.password)
       .then(response => {
@@ -45,7 +51,6 @@ const actions = {
           let colors = ["red", "orange", "yellow", "green", "blue", "purple"];
           return colors[Math.floor(Math.random() * colors.length)];
         };
-        console.log(response);
         let userId = firebaseAuth.currentUser.uid;
         firebaseDb.ref("users/" + userId).set({
           name: payload.name,
@@ -53,27 +58,27 @@ const actions = {
           color: getRandomColor(),
           online: true
         });
+        dispatch("clearLoginForm");
       })
       .catch(error => {
-        console.log(error);
+        commit("setLoginError", {status: true, message: "An error occurred while registering."})
       })
       .finally(() => {
         commit("setIsLoading", false);
-        dispatch("clearLoginForm");
       });
   },
   authenticateUser({ commit, dispatch }, payload) {
+    commit("setLoginError", {status: false, message: ""})
     firebaseAuth
       .signInWithEmailAndPassword(payload.email, payload.password)
       .then(response => {
-        // console.log('then',response);
+        dispatch("clearLoginForm");
       })
       .catch(error => {
-        // console.log('error',error);
+        commit("setLoginError", {status: true, message: "Incorrect email or password."})
       })
       .finally(() => {
         commit("setIsLoading", false);
-        dispatch("clearLoginForm");
       });
   },
   signOutUser() {
@@ -168,6 +173,12 @@ const getters = {
   },
   loginPassword: state => {
     return state.loginPassword;
+  },
+  loginErrorStatus: state => {
+    return state.loginErrorStatus;
+  },
+  loginErrorMessage: state => {
+    return state.loginErrorMessage;
   }
 };
 export default {

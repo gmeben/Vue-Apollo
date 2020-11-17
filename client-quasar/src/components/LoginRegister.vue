@@ -31,6 +31,13 @@
       class="q-mb-md"
       outlined
     />
+    <q-banner 
+      v-if="loginErrorStatus"
+      inline-actions 
+      class="text-white bg-negative rounded-borders"
+      dense>
+      <q-icon name="warning" /> {{ loginErrorMessage}}
+    </q-banner>
     <q-btn
       class="full-width q-mt-lg"
       :label="tab"
@@ -72,6 +79,8 @@ export default {
       "loginName",
       "loginEmail",
       "loginPassword",
+      "loginErrorStatus",
+      "loginErrorMessage",
     ]),
   },
 };
