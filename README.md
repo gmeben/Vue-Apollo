@@ -12,6 +12,10 @@ This repository is a project meant for exploring GraphQL and Apollo integrations
 
 ## Directories
 
+### client-quasar
+
+This directory houses a Quasar app that uses Firebase Authentication and Firebase Realtime Database.
+
 ### /client-vue-2
 
 This directory houses the Vue 2 version of the GraphQL app.
